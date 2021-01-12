@@ -1,11 +1,14 @@
 package com.study.java8;
 
-public class ClassForStreamAPIPractice {
+import java.util.Optional;
+
+public class OnlineClass {
     private Integer id;
     private String title;
     private boolean closed;
+    public Progress progress;
 
-    public ClassForStreamAPIPractice(Integer id, String title, boolean closed) {
+    public OnlineClass(Integer id, String title, boolean closed) {
         this.id = id;
         this.title = title;
         this.closed = closed;
@@ -35,9 +38,18 @@ public class ClassForStreamAPIPractice {
         this.closed = closed;
     }
 
+    public Optional<Progress> getProgress() {
+//        return Optional.of(progress);     // null이 들어오면 예외가 난다.
+        return Optional.ofNullable(progress);
+
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
     @Override
     public String toString() {
-        return "ClassForStreamAPIPractice{" +
+        return "OnlineClass{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", closed=" + closed +

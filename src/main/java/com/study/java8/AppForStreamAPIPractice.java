@@ -10,19 +10,19 @@ import java.util.stream.Stream;
 
 public class AppForStreamAPIPractice {
     public static void main(String[] args) {
-        List<ClassForStreamAPIPractice> springClasses = new ArrayList<>();
-        springClasses.add(new ClassForStreamAPIPractice(1 , "spring boot" , true));
-        springClasses.add(new ClassForStreamAPIPractice(2 , "spring data jpa" , true));
-        springClasses.add(new ClassForStreamAPIPractice(3 , "spring mvc" , false));
-        springClasses.add(new ClassForStreamAPIPractice(4 , "spring core" , false));
-        springClasses.add(new ClassForStreamAPIPractice(5 , "rest api development" , false));
+        List<OnlineClass> springClasses = new ArrayList<>();
+        springClasses.add(new OnlineClass(1 , "spring boot" , true));
+        springClasses.add(new OnlineClass(2 , "spring data jpa" , true));
+        springClasses.add(new OnlineClass(3 , "spring mvc" , false));
+        springClasses.add(new OnlineClass(4 , "spring core" , false));
+        springClasses.add(new OnlineClass(5 , "rest api development" , false));
 
         System.out.println(" spring으로 시작하는 수업 ");
         springClasses.stream()
                 .filter(oc -> oc.getTitle().startsWith("spring"))
                 .forEach(oc -> System.out.println(oc.getId()));
         // 필터에 걸린 객체를 리스트로 받기
-        List<ClassForStreamAPIPractice> exam1List = springClasses.stream()
+        List<OnlineClass> exam1List = springClasses.stream()
                  .filter(oc -> oc.getTitle().startsWith("spring"))
                  .collect(Collectors.toList());
 
@@ -35,12 +35,12 @@ public class AppForStreamAPIPractice {
 
         // 스태틱 메서드와 메서드 레퍼런스 활용
         springClasses.stream()
-                .filter(Predicate.not(ClassForStreamAPIPractice::isClosed))
+                .filter(Predicate.not(OnlineClass::isClosed))
                 .forEach(oc -> System.out.println(oc.getId()));
 
         // 필터에 걸린 객체를 리스트로 받기
-        List<ClassForStreamAPIPractice> exam2List = springClasses.stream()
-                .filter(Predicate.not(ClassForStreamAPIPractice::isClosed))
+        List<OnlineClass> exam2List = springClasses.stream()
+                .filter(Predicate.not(OnlineClass::isClosed))
                 .collect(Collectors.toList());
 
         exam2List.forEach(System.out::println);
@@ -49,16 +49,16 @@ public class AppForStreamAPIPractice {
         System.out.println(" 수업 이름만 모아서 스트림 만들기 ");
         // 중개 오퍼레이터인 map은 객체를 map으로 받아들여 나갈때는 다른 타입으로 변경할 수 있다.
         springClasses.stream()
-                        .map(ClassForStreamAPIPractice::getTitle)
+                        .map(OnlineClass::getTitle)
                         .forEach(System.out::println);
 
 
-        List<ClassForStreamAPIPractice> javaClasses = new ArrayList<>();
-        javaClasses.add(new ClassForStreamAPIPractice(6 , "The Java , Test" , true));
-        javaClasses.add(new ClassForStreamAPIPractice(7 , "The Java , Code manipulation" , true));
-        javaClasses.add(new ClassForStreamAPIPractice(8 , "The Java , 8 to 11" , false));
+        List<OnlineClass> javaClasses = new ArrayList<>();
+        javaClasses.add(new OnlineClass(6 , "The Java , Test" , true));
+        javaClasses.add(new OnlineClass(7 , "The Java , Code manipulation" , true));
+        javaClasses.add(new OnlineClass(8 , "The Java , 8 to 11" , false));
 
-        List<List<ClassForStreamAPIPractice>> keesunEvents = new ArrayList<>();
+        List<List<OnlineClass>> keesunEvents = new ArrayList<>();
         keesunEvents.add(springClasses);
         keesunEvents.add(javaClasses);
 
@@ -84,13 +84,13 @@ public class AppForStreamAPIPractice {
 
         System.out.println(" 스프링 수업 중에 제목에 spring이 들어간 제목만 모아서 List로 만들기 ");
         List<String> titleList = springClasses.stream()
-                                        .map(ClassForStreamAPIPractice::getTitle)
+                                        .map(OnlineClass::getTitle)
                                         .filter(t -> t.contains("spring"))
                                         .collect(Collectors.toList());
         titleList.forEach(System.out::println);
 
         System.out.println(" 스프링 수업 중에 제목에 spring이 들어간 객체를 모아서 List로 만들기 ");
-        List<ClassForStreamAPIPractice> objList = springClasses.stream()
+        List<OnlineClass> objList = springClasses.stream()
                                             .filter(oc -> oc.getTitle().contains("spring"))
                                             .collect(Collectors.toList());
         objList.forEach(System.out::println);
